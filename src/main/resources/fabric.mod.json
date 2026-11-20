@@ -1,0 +1,27 @@
+{
+	"schemaVersion": 1,
+	"id": "calopsita",
+	"version": "${version}",
+	"name": "Calopsita",
+	"description": "Adds the Calopsita, a tameable pet bird that follows its owner, perches on the shoulder and can be ordered to sit.",
+	"authors": [
+		"ander"
+	],
+	"contact": {},
+	"license": "MIT",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.calopsita.CalopsitaMod"
+		],
+		"client": [
+			"com.calopsita.client.CalopsitaClient"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.16.0",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}
