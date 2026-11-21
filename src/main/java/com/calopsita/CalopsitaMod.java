@@ -29,10 +29,13 @@ public class CalopsitaMod implements ModInitializer {
 					.build(ResourceKey.create(Registries.ENTITY_TYPE, id("calopsita")))
 	);
 
+	public static final ResourceKey<Item> CALOPSITA_SPAWN_EGG_KEY =
+			ResourceKey.create(Registries.ITEM, id("calopsita_spawn_egg"));
+
 	public static final Item CALOPSITA_SPAWN_EGG = Registry.register(
 			BuiltInRegistries.ITEM,
 			id("calopsita_spawn_egg"),
-			new SpawnEggItem(new Item.Properties().spawnEgg(CALOPSITA))
+			new SpawnEggItem(new Item.Properties().setId(CALOPSITA_SPAWN_EGG_KEY).spawnEgg(CALOPSITA))
 	);
 
 	@Override
