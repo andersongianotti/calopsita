@@ -1,6 +1,6 @@
 # Calopsita Mod
 
-Um mod para **Minecraft Java Edition 1.21.1** (Fabric) que adiciona a **Calopsita**, um pet pássaro domesticável.
+Um mod para **Minecraft Java Edition 26.3** (Fabric) que adiciona a **Calopsita**, um pet pássaro domesticável.
 
 ## Funcionalidades
 
@@ -17,9 +17,9 @@ Um mod para **Minecraft Java Edition 1.21.1** (Fabric) que adiciona a **Calopsit
 
 ## Como usar
 
-1. Compile com `./gradlew build` (requer JDK 21)
+1. Compile com `./gradlew build` (requer **JDK 25**)
 2. O jar sai em `build/libs/calopsita-1.0.0.jar`
-3. Coloque o jar + [Fabric API](https://modrinth.com/mod/fabric-api) + Fabric Loader na pasta `mods` do Minecraft 1.21.1
+3. Coloque o jar + [Fabric API](https://modrinth.com/mod/fabric-api) (versão para 26.3) + Fabric Loader na pasta `mods` do Minecraft 26.3
 
 No jogo:
 - Pegue o **Ovo Gerador de Calopsita** (aba Spawn Eggs)
@@ -50,7 +50,7 @@ A Calopsita reutiliza o modelo, texturas, animações e sons do periquito vanill
 ## Build
 
 ```bash
-JAVA_HOME=/caminho/para/jdk-21 ./gradlew build
+JAVA_HOME=/caminho/para/jdk-25 ./gradlew build
 ```
 
-Requer **JDK 21** (Minecraft 1.21.1). Para a versão 26.x do Minecraft seria necessário JDK 25.
+Requer **JDK 25** (Minecraft 26.3).

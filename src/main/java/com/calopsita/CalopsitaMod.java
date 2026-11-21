@@ -2,15 +2,17 @@ package com.calopsita;
 
 import com.calopsita.entity.CalopsitaEntity;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SpawnEggItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,26 +26,26 @@ public class CalopsitaMod implements ModInitializer {
 			id("calopsita"),
 			EntityType.Builder.of(CalopsitaEntity::new, MobCategory.CREATURE)
 					.sized(0.5F, 0.9F)
-					.build("calopsita")
+					.build(ResourceKey.create(Registries.ENTITY_TYPE, id("calopsita")))
 	);
 
 	public static final Item CALOPSITA_SPAWN_EGG = Registry.register(
 			BuiltInRegistries.ITEM,
 			id("calopsita_spawn_egg"),
-			new SpawnEggItem(CALOPSITA, 0xA8D8EA, 0xFDF6E3, new Item.Properties())
+			new SpawnEggItem(new Item.Properties().spawnEgg(CALOPSITA))
 	);
 
 	@Override
 	public void onInitialize() {
 		FabricDefaultAttributeRegistry.register(CALOPSITA, CalopsitaEntity.createAttributes());
 
-		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.SPAWN_EGGS)
-				.register(entries -> entries.accept(CALOPSITA_SPAWN_EGG));
+		CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.SPAWN_EGGS)
+				.register(output -> output.accept(CALOPSITA_SPAWN_EGG));
 
 		LOGGER.info("Calopsita loaded!");
 	}
 
-	public static ResourceLocation id(String path) {
-		return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
+	public static Identifier id(String path) {
+		return Identifier.fromNamespaceAndPath(MOD_ID, path);
 	}
 }
