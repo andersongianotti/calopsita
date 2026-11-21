@@ -1,4 +1,6 @@
 {
 	"entity.calopsita.calopsita": "Calopsita",
-	"item.calopsita.calopsita_spawn_egg": "Ovo Gerador de Calopsita"
+	"item.calopsita.calopsita_spawn_egg": "Ovo Gerador de Calopsita (Normal)",
+	"item.calopsita.calopsita_whiteface_spawn_egg": "Ovo Gerador de Calopsita (Whiteface)",
+	"item.calopsita.calopsita_lutino_spawn_egg": "Ovo Gerador de Calopsita (Lutino)"
 }

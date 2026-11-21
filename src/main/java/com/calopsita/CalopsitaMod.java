@@ -5,15 +5,19 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.animal.parrot.Parrot;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SpawnEggItem;
+import net.minecraft.world.item.component.TypedEntityData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,21 +33,40 @@ public class CalopsitaMod implements ModInitializer {
 					.build(ResourceKey.create(Registries.ENTITY_TYPE, id("calopsita")))
 	);
 
-	public static final ResourceKey<Item> CALOPSITA_SPAWN_EGG_KEY =
-			ResourceKey.create(Registries.ITEM, id("calopsita_spawn_egg"));
+	public static final Item CALOPSITA_SPAWN_EGG = spawnEgg("calopsita_spawn_egg", Parrot.Variant.GRAY);
+	public static final Item CALOPSITA_WHITEFACE_SPAWN_EGG = spawnEgg("calopsita_whiteface_spawn_egg", Parrot.Variant.YELLOW_BLUE);
+	public static final Item CALOPSITA_LUTINO_SPAWN_EGG = spawnEgg("calopsita_lutino_spawn_egg", Parrot.Variant.GREEN);
 
-	public static final Item CALOPSITA_SPAWN_EGG = Registry.register(
-			BuiltInRegistries.ITEM,
-			id("calopsita_spawn_egg"),
-			new SpawnEggItem(new Item.Properties().setId(CALOPSITA_SPAWN_EGG_KEY).spawnEgg(CALOPSITA))
-	);
+	private static Item spawnEgg(String name, Parrot.Variant variant) {
+		ResourceKey<Item> key = ResourceKey.create(Registries.ITEM, id(name));
+		return Registry.register(
+				BuiltInRegistries.ITEM,
+				id(name),
+				new SpawnEggItem(new Item.Properties()
+						.setId(key)
+						.spawnEgg(CALOPSITA)
+						.component(DataComponents.ENTITY_DATA, eggData(variant)))
+		);
+	}
+
+	private static TypedEntityData<EntityType<?>> eggData(Parrot.Variant variant) {
+		CompoundTag components = new CompoundTag();
+		components.putString("minecraft:parrot_variant", variant.getSerializedName());
+		CompoundTag tag = new CompoundTag();
+		tag.put("components", components);
+		return TypedEntityData.of((EntityType<?>) CALOPSITA, tag);
+	}
 
 	@Override
 	public void onInitialize() {
 		FabricDefaultAttributeRegistry.register(CALOPSITA, CalopsitaEntity.createAttributes());
 
 		CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.SPAWN_EGGS)
-				.register(output -> output.accept(CALOPSITA_SPAWN_EGG));
+				.register(output -> {
+					output.accept(CALOPSITA_SPAWN_EGG);
+					output.accept(CALOPSITA_WHITEFACE_SPAWN_EGG);
+					output.accept(CALOPSITA_LUTINO_SPAWN_EGG);
+				});
 
 		LOGGER.info("Calopsita loaded!");
 	}
