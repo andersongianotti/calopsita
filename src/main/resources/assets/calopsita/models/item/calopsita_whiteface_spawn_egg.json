@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "calopsita:item/calopsita_whiteface_spawn_egg"
+  }
+}
