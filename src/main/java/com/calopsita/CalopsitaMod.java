@@ -33,9 +33,7 @@ public class CalopsitaMod implements ModInitializer {
 					.build(ResourceKey.create(Registries.ENTITY_TYPE, id("calopsita")))
 	);
 
-	public static final Item CALOPSITA_SPAWN_EGG = spawnEgg("calopsita_spawn_egg", Parrot.Variant.GRAY);
-	public static final Item CALOPSITA_WHITEFACE_SPAWN_EGG = spawnEgg("calopsita_whiteface_spawn_egg", Parrot.Variant.YELLOW_BLUE);
-	public static final Item CALOPSITA_LUTINO_SPAWN_EGG = spawnEgg("calopsita_lutino_spawn_egg", Parrot.Variant.GREEN);
+	public static final Item CALOPSITA_SPAWN_EGG = spawnEgg("calopsita_spawn_egg", Parrot.Variant.YELLOW_BLUE);
 
 	private static Item spawnEgg(String name, Parrot.Variant variant) {
 		ResourceKey<Item> key = ResourceKey.create(Registries.ITEM, id(name));
@@ -64,8 +62,6 @@ public class CalopsitaMod implements ModInitializer {
 		CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.SPAWN_EGGS)
 				.register(output -> {
 					output.accept(CALOPSITA_SPAWN_EGG);
-					output.accept(CALOPSITA_WHITEFACE_SPAWN_EGG);
-					output.accept(CALOPSITA_LUTINO_SPAWN_EGG);
 				});
 
 		LOGGER.info("Calopsita loaded!");

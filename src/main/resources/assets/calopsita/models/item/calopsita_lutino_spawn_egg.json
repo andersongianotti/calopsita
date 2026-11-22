@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "calopsita:item/calopsita_lutino_spawn_egg"
-  }
-}
