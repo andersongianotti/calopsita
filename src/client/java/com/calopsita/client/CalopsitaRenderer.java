@@ -9,9 +9,9 @@ import net.minecraft.world.entity.animal.parrot.Parrot;
 
 public class CalopsitaRenderer extends ParrotRenderer {
 
-	private static final Identifier NORMAL = CalopsitaMod.id("textures/entity/calopsita_normal");
-	private static final Identifier WHITEFACE = CalopsitaMod.id("textures/entity/calopsita_whiteface");
-	private static final Identifier LUTINO = CalopsitaMod.id("textures/entity/calopsita_lutino");
+	private static final Identifier NORMAL = CalopsitaMod.id("textures/entity/calopsita_normal.png");
+	private static final Identifier WHITEFACE = CalopsitaMod.id("textures/entity/calopsita_whiteface.png");
+	private static final Identifier LUTINO = CalopsitaMod.id("textures/entity/calopsita_lutino.png");
 
 	public CalopsitaRenderer(EntityRendererProvider.Context context) {
 		super(context);
